@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.management.loading.PrivateClassLoader;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,10 +44,10 @@ public class Post {
 	
 	
 	@JdbcTypeCode(SqlTypes.JSON)
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
 	@JdbcTypeCode(SqlTypes.JSON)
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
 }

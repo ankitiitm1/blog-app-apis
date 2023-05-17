@@ -10,7 +10,7 @@ import com.ankit.blog.entities.User;
 
 public interface PostRepo extends JpaRepository<Post, Integer> {
 
-	List<Post> getByUser(User user);
-	List<Post> getByCategory(Category category);
+	List<Post> findByUser(User user);
+	List<Post> findByCategory(Category category);
 
 }

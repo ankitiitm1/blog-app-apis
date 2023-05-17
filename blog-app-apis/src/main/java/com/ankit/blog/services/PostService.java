@@ -6,25 +6,25 @@ import org.springframework.stereotype.Service;
 
 import com.ankit.blog.entities.Post;
 import com.ankit.blog.payloads.PostDto;
+import com.ankit.blog.payloads.PostResponse;
 
 public interface PostService {
 
-
-	 //PostDto createPost(PostDto postDto, Integer userId, Integer categoryId) ;
-	 void  deletePost(PostDto postDto);
+	 void  deletePost(Integer postId);
+	 
 	 Post updatePost(PostDto postDto,Integer id);
 	
-	 List<Post> getAllPosts();
+	 PostResponse getAllPosts(int pageNumber,int pageSize);
 	 
 
-	 Post getPostById(Integer postId);
+	 PostDto getPostById(Integer postId);
 	 
-	 List<Post> getPostsByCategory(Integer categoryId);
+	 List<PostDto> getPostsByCategory(Integer categoryId);
 	 
-	 List<Post> getPostsbyUser(Integer userId);
+	 List<PostDto> getPostsbyUser(Integer userId);
 	 
-	 List<Post> searchPosts(String Keyword);
-	PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
+	 List<PostDto> searchPosts(String Keyword);
+	 PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
 
 	 
 	 
