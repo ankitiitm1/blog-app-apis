@@ -7,6 +7,7 @@ import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.hibernate.query.NativeQuery.ReturnableResultNode;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ankit.blog.entities.User;
@@ -22,10 +23,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDto createUser(UserDto userDto) {
-		User user=this.dtotoUser(userDto);	
+		User user=this.dtotoUser(userDto);
+		String encodedpassword= passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedpassword);
+		System.out.print(user.getPassword());
 		User savedUser=this.userRepo.save(user);
 		return this.userToDto(savedUser);
 		

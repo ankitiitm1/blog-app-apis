@@ -94,7 +94,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostDto getPostById(Integer postId) {
-		// TODO Auto-generated method stub
+		
 		Post returnedPost=postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post","id",postId));
 		return this.modelMapper.map(returnedPost, PostDto.class);
 	}
@@ -120,8 +120,9 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostDto> searchPosts(String Keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Post> list=postRepo.searchByTitle("%" + Keyword + "%");
+		List<PostDto> listDtos=list.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		return listDtos;
 	}
 	
 }
